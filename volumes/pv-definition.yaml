@@ -8,6 +8,7 @@ spec:
     - ReadWriteOnce
   capacity:
     storage: 1Gi
+  persistentVolumeReclaimPolicy: Retain
   hostPath:
     path: /tmp/data
   # or create AWS volume
