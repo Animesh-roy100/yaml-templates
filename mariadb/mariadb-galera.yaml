@@ -1,0 +1,18 @@
+apiVersion: mariadb.mariadb.org/v1alpha1
+kind: MariaDB
+metadata:
+  name: my-mariadb-galera
+  namespace: default
+spec:
+  version: "10.5"
+  replicas: 3
+  storage:
+    type: persistent-claim
+    size: 10Gi
+  persistence:
+    enabled: true
+    accessModes:
+      - ReadWriteOnce
+  galera:
+    enabled: true
+    wsrepClusterAddress: "gcomm://"

@@ -1,0 +1,24 @@
+apiVersion: mariadb.presslabs.org/v1alpha1
+kind: MariaDBCluster
+metadata:
+  name: my-mariadb-cluster
+spec:
+  replicas: 3
+  secretName: mariadb-secrets
+  rootPassword:
+    valueFrom:
+      secretKeyRef:
+        name: mariadb-secrets
+        key: root-password
+  databases:
+    - name: myapp
+      user:
+        valueFrom:
+          secretKeyRef:
+            name: mariadb-secrets
+            key: app-user
+      password:
+        valueFrom:
+          secretKeyRef:
+            name: mariadb-secrets
+            key: app-password
